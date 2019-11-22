@@ -5,8 +5,23 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <button @click="test">Test button</button>
   </div>
 </template>
+
+<script lang="ts">
+import { getModule } from 'vuex-module-decorators';
+import { Component, Vue,  } from 'vue-property-decorator';
+import AppModule from './store/appModule';
+
+@Component({})
+export default class App extends Vue {
+  private appModule = getModule(AppModule, this.$store);
+  private test () {
+    console.log(this.appModule.appState.val)
+  }
+}
+</script>
 
 <style lang="stylus">
 #app
